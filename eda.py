@@ -72,3 +72,23 @@ target_imdb_score = data['imdb_score']
 #database = data.drop('gross', 1)
 database = data.drop('imdb_score', 1)
 preprocessed_data = preprocessed_agregated_data(database)
+from sklearn.preprocessing import StandardScaler
+import numpy as np
+
+data = pd.read_csv(io.BytesIO(uploaded['movie_metadata.csv']))
+#data = data[(data.actor_1_facebook_likes > 0.0) & (data.actor_2_facebook_likes > 0.0) & (data.actor_3_facebook_likes > 0.0) & (data.director_facebook_likes > 0.0) & (data.cast_total_facebook_likes > 0.0) & (data.gross > 0.0)]
+#target_gross = data['gross']
+data = data_clean(data)
+target_imdb_score = data['imdb_score']
+
+database = data.drop('gross', 1)
+database = data.drop('imdb_score', 1)
+preprocessed_data = preprocessed_agregated_data(database)
+target_imdb_score = np.array(target_imdb_score)  
+#target_imdb_score = np.ndarray.reshape(-1,1)
+#target_gross = preprocessing_numerical_minmax(target_gross)
+scaled_data =  StandardScaler().fit_transform(target_imdb_score)
+#scaled_data = min_max_scaler.fit_transform(target_imdb_score)
+
+#target_imdb_score = preprocessing_numerical_minmax(target_imdb_score)
+print("feature calculation complete\n")
