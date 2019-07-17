@@ -64,3 +64,11 @@ def preprocessed_agregated_data(database):
     categorical_data = preprocessing_catagory(database)
     all_data = np.append(numerical_data, categorical_data, 1)
     return all_data
+data = pd.read_csv(io.BytesIO(uploaded['movie_metadata.csv']))
+#data = data[(data.actor_1_facebook_likes > 0.0) & (data.actor_2_facebook_likes > 0.0) & (data.actor_3_facebook_likes > 0.0) & (data.director_facebook_likes > 0.0) & (data.cast_total_facebook_likes > 0.0) & (data.gross > 0.0)]
+#target_gross = data['gross']
+data = data_clean(data)
+target_imdb_score = data['imdb_score']
+#database = data.drop('gross', 1)
+database = data.drop('imdb_score', 1)
+preprocessed_data = preprocessed_agregated_data(database)
