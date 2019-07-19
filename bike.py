@@ -33,3 +33,11 @@ upper_bound = q3 +(1.5 * iqr)
 train_preprocessed = train.loc[(train.cnt >= lower_bound) & (train.cnt <= upper_bound)]
 print("Samples in train set without outliers: {}".format(len(train_preprocessed)))
 sns.distplot(train_preprocessed.cnt);
+matrix = train[number_features + target].corr()
+heat = np.array(matrix)
+heat[np.tril_indices_from(heat)] = False
+fig,ax= plt.subplots()
+fig.set_size_inches(20,10)
+sns.set(font_scale=1.0)
+sns.heatmap(matrix, mask=heat,vmax=1.0, vmin=0.0, square=True,annot=True, cmap="Reds")
+features.remove('atemp')
