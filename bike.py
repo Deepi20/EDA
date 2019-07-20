@@ -41,3 +41,39 @@ fig.set_size_inches(20,10)
 sns.set(font_scale=1.0)
 sns.heatmap(matrix, mask=heat,vmax=1.0, vmin=0.0, square=True,annot=True, cmap="Reds")
 features.remove('atemp')
+
+
+x_train = train_preprocessed[features].values
+y_train = train_preprocessed[target].values.ravel()
+# Sort validation set for plots
+val = val.sort_values(by=target)
+x_val = val[features].values
+y_val = val[target].values.ravel()
+x_test = test[features].values
+
+table = PrettyTable()
+table.field_names = ["Model", "Mean Squared Error", "R² score"]
+
+models = [
+    SGDRegressor(max_iter=1000, tol=1e-3),
+    Lasso(alpha=0.1),
+    ElasticNet(random_state=0),
+    Ridge(alpha=.5),
+    SVR(gamma='auto', kernel='linear'),
+    SVR(gamma='auto', kernel='rbf'),
+    BaggingRegressor(),
+    BaggingRegressor(KNeighborsClassifier(), max_samples=0.5, max_features=0.5),
+    NuSVR(gamma='auto'),
+    RandomForestRegressor( random_state=0, n_estimators=300)
+]
+
+for model in models:
+    model.fit(x_train, y_train) 
+    y_res = model.predict(x_val)
+
+    mse = mean_squared_error(y_val, y_res)
+    score = model.score(x_val, y_val)    
+
+    table.add_row([type(model).__name__, format(mse, '.2f'), format(score, '.2f')])
+
+print(table)
