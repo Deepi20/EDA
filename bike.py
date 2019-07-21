@@ -1,3 +1,31 @@
+from dataloader import Dataloader
+import seaborn as sns
+import matplotlib.pyplot as plt
+from prettytable import PrettyTable
+import numpy as np
+# Sklearn model delection
+from sklearn.model_selection import RandomizedSearchCV
+# Sklearn metrics
+from sklearn.metrics import mean_squared_error, mean_absolute_error, mean_squared_log_error
+# Sklearn models
+from sklearn.linear_model import Lasso, ElasticNet, Ridge, SGDRegressor
+from sklearn.svm import SVR, NuSVR
+from sklearn.ensemble import BaggingRegressor, RandomForestRegressor
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.cluster import KMeans
+
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import GradientBoostingClassifier
+
+from sklearn.linear_model import LinearRegression
+
+import random
+
+%matplotlib inline
+
+# Make results reproducible
+random.seed(100)
+
 dataloader = Dataloader('Bike-Sharing-Dataset/hour.csv')
 train, val, test = dataloader.getData()
 fullData = dataloader.getFullData()
