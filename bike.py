@@ -115,3 +115,31 @@ for model in models:
     table.add_row([type(model).__name__, format(mse, '.2f'), format(score, '.2f')])
 
 print(table)
+
+# Table setup
+table = PrettyTable()
+table.field_names = ["Model", "Dataset", "MSE", "MAE", 'RMSLE', "R² score"]
+# Model training
+model = RandomForestRegressor(bootstrap=True, criterion='mse', max_depth=None,
+           max_features='auto', max_leaf_nodes=None,
+           min_impurity_decrease=0.0, min_impurity_split=None,
+           min_samples_leaf=1, min_samples_split=4,
+           min_weight_fraction_leaf=0.0, n_estimators=200, n_jobs=None,
+           oob_score=False, random_state=None, verbose=0, warm_start=False)
+model.fit(x_train, y_train) 
+
+def evaluate(x, y, dataset):
+    pred = model.predict(x)
+
+    mse = mean_squared_error(y, pred)
+    mae = mean_absolute_error(y, pred)
+    score = model.score(x, y)    
+    rmsle = np.sqrt(mean_squared_log_error(y, pred))
+
+    table.add_row([type(model).__name__, dataset, format(mse, '.2f'), format(mae, '.2f'), format(rmsle, '.2f'), format(score, '.2f')])
+    
+
+evaluate(x_train, y_train, 'training')
+evaluate(x_val, y_val, 'validation')
+
+print(table)
