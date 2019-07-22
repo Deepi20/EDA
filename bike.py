@@ -143,3 +143,17 @@ evaluate(x_train, y_train, 'training')
 evaluate(x_val, y_val, 'validation')
 
 print(table)
+importances = model.feature_importances_
+std = np.std([tree.feature_importances_ for tree in model.estimators_], axis=0)
+indices = np.argsort(importances)[::-1]
+print("Feature ranking:")
+
+for f in range(x_val.shape[1]):
+    print("%d. feature %s (%f)" % (f + 1, features[indices[f]], importances[indices[f]]))
+plt.figure(figsize=(14,5))
+plt.title("Feature importances")
+plt.bar(range(x_val.shape[1]), importances[indices], color="cornflowerblue", yerr=std[indices], align="center")
+plt.xticks(range(x_val.shape[1]), [features[i] for i in indices])
+plt.xlim([-1, x_val.shape[1]])
+plt.show()
+
