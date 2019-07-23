@@ -7,7 +7,6 @@ import numpy as np
 from sklearn.model_selection import RandomizedSearchCV
 # Sklearn metrics
 from sklearn.metrics import mean_squared_error, mean_absolute_error, mean_squared_log_error
-# Sklearn models
 from sklearn.linear_model import Lasso, ElasticNet, Ridge, SGDRegressor
 from sklearn.svm import SVR, NuSVR
 from sklearn.ensemble import BaggingRegressor, RandomForestRegressor
@@ -23,7 +22,7 @@ import random
 
 %matplotlib inline
 
-# Make results reproducible
+
 random.seed(100)
 
 dataloader = Dataloader('Bike-Sharing-Dataset/hour.csv')
@@ -121,7 +120,7 @@ print(table)
 # Table setup
 table = PrettyTable()
 table.field_names = ["Model", "Dataset", "MSE", "MAE", 'RMSLE', "R² score"]
-# Model training
+
 model = RandomForestRegressor(bootstrap=True, criterion='mse', max_depth=None,
            max_features='auto', max_leaf_nodes=None,
            min_impurity_decrease=0.0, min_impurity_split=None,
