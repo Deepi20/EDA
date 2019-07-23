@@ -3,9 +3,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from prettytable import PrettyTable
 import numpy as np
-# Sklearn model delection
 from sklearn.model_selection import RandomizedSearchCV
-# Sklearn metrics
 from sklearn.metrics import mean_squared_error, mean_absolute_error, mean_squared_log_error
 from sklearn.linear_model import Lasso, ElasticNet, Ridge, SGDRegressor
 from sklearn.svm import SVR, NuSVR
@@ -84,7 +82,6 @@ sns.distplot(train_preprocessed.cnt);
 
 x_train = train_preprocessed[features].values
 y_train = train_preprocessed[target].values.ravel()
-# Sort validation set for plots
 val = val.sort_values(by=target)
 x_val = val[features].values
 y_val = val[target].values.ravel()
