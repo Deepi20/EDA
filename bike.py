@@ -51,6 +51,7 @@ axes[1][0].set(xlabel='Weather Situation', ylabel='Count',title="Box Plot On Cou
 axes[1][1].set(xlabel='Working Day', ylabel='Count',title="Box Plot On Count Across Working Day")
 axes[2][0].set(xlabel='Hour Of The Day', ylabel='Count',title="Box Plot On Count Across Hour Of The Day")
 axes[2][1].set(xlabel='Temperature', ylabel='Count',title="Box Plot On Count Across Temperature")
+sns.distplot(train[target[-1]]);
 
 print("Samples in train set with outliers: {}".format(len(train)))
 q1 = train.cnt.quantile(0.25)
@@ -61,6 +62,7 @@ upper_bound = q3 +(1.5 * iqr)
 train_preprocessed = train.loc[(train.cnt >= lower_bound) & (train.cnt <= upper_bound)]
 print("Samples in train set without outliers: {}".format(len(train_preprocessed)))
 sns.distplot(train_preprocessed.cnt);
+
 matrix = train[number_features + target].corr()
 heat = np.array(matrix)
 heat[np.tril_indices_from(heat)] = False
