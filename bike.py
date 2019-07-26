@@ -71,6 +71,12 @@ axes[1][1].set(xlabel='Working Day', ylabel='Count',title="Box Plot On Count Acr
 axes[2][0].set(xlabel='Hour Of The Day', ylabel='Count',title="Box Plot On Count Across Hour Of The Day")
 axes[2][1].set(xlabel='Temperature', ylabel='Count',title="Box Plot On Count Across Temperature")
 sns.distplot(train[target[-1]]);
+fig,axes = plt.subplots(ncols=2,nrows=2)
+fig.set_size_inches(12, 10)
+sn.distplot(dailyData["cnt"],ax=axes[0][0])
+stats.probplot(dailyData["cnt"], dist='norm', fit=True, plot=axes[0][1])
+sn.distplot(np.log(dailyDataWithoutOutliers["cnt"]),ax=axes[1][0])
+stats.probplot(np.log1p(dailyDataWithoutOutliers["cnt"]), dist='norm', fit=True, plot=axes[1][1])
 
 print("Samples in train set with outliers: {}".format(len(train)))
 q1 = train.cnt.quantile(0.25)
