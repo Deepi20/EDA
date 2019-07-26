@@ -42,6 +42,28 @@ sns.boxplot(data=train,y="cnt",x="workingday",orient="v",ax=axes[1][1])
 sns.boxplot(data=train,y="cnt",x="hr",orient="v",ax=axes[2][0])
 sns.boxplot(data=train,y="cnt",x="temp",orient="v",ax=axes[2][1])
 
+fig,(ax1,ax2,ax3,ax4)= plt.subplots(nrows=4)
+fig.set_size_inches(12,20)
+sortOrder = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+hueOrder = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+
+monthAggregated = pd.DataFrame(dailyData.groupby("mnth")["cnt"].mean()).reset_index()
+monthSorted = monthAggregated.sort_values(by="cnt",ascending=False)
+sn.barplot(data=monthSorted,x="mnth",y="cnt",ax=ax1,order=sortOrder)
+ax1.set(xlabel='Month', ylabel='Average Count',title="Average Count By Month")
+
+hourAggregated = pd.DataFrame(dailyData.groupby(["hr","season"],sort=True)["cnt"].mean()).reset_index()
+sn.pointplot(x=hourAggregated["hr"], y=hourAggregated["cnt"],hue=hourAggregated["season"], data=hourAggregated, join=True,ax=ax2)
+ax2.set(xlabel='Hour Of The Day', ylabel='Users Count',title="Average Users Count By Hour Of The Day Across Season",label='big')
+
+hourAggregated = pd.DataFrame(dailyData.groupby(["hr","weekday"],sort=True)["cnt"].mean()).reset_index()
+sn.pointplot(x=hourAggregated["hr"], y=hourAggregated["cnt"],hue=hourAggregated["weekday"],hue_order=hueOrder, data=hourAggregated, join=True,ax=ax3)
+ax3.set(xlabel='Hour Of The Day', ylabel='Users Count',title="Average Users Count By Hour Of The Day Across Weekdays",label='big')
+
+hourTransformed = pd.melt(dailyData[["hr","casual","registered"]], id_vars=['hr'], value_vars=['casual', 'registered'])
+hourAggregated = pd.DataFrame(hourTransformed.groupby(["hr","variable"],sort=True)["value"].mean()).reset_index()
+sn.pointplot(x=hourAggregated["hr"], y=hourAggregated["value"],hue=hourAggregated["variable"],hue_order=["casual","registered"], data=hourAggregated, join=True,ax=ax4)
+ax4.set(xlabel='Hour Of The Day', ylabel='Users Count',title="Average Users Count By Hour Of The Day Across User Type",label='big')
 axes[0][0].set(ylabel='Count',title="Box Plot On Count")
 axes[0][1].set(xlabel='Month', ylabel='Count',title="Box Plot On Count Across Months")
 axes[1][0].set(xlabel='Weather Situation', ylabel='Count',title="Box Plot On Count Across Weather Situations")
