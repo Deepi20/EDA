@@ -87,8 +87,3 @@ preprocessed_data = preprocessed_agregated_data(database)
 target_imdb_score = np.array(target_imdb_score)  
 #target_imdb_score = np.ndarray.reshape(-1,1)
 #target_gross = preprocessing_numerical_minmax(target_gross)
-scaled_data =  StandardScaler().fit_transform(target_imdb_score)
-#scaled_data = min_max_scaler.fit_transform(target_imdb_score)
-
-#target_imdb_score = preprocessing_numerical_minmax(target_imdb_score)
-print("feature calculation complete\n")
