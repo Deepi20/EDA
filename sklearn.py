@@ -68,3 +68,10 @@ clf = GridSearchCV(decision_pipeline,
                    cv=3,
                    verbose=5)
 clf.fit(X_train, y_train)
+clf.best_estimator_
+clf.predict(X_test)
+clf.score(X_test, y_test)
+from sklearn.metrics import recall_score
+def scorer(estimator, X, y):
+  pred = estimator.predict(X)
+  return(recall_score(y, pred, pos_label=2, average='micro'))
