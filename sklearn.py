@@ -56,3 +56,15 @@ clf = RandomizedSearchCV(DecisionTreeClassifier(),
                          verbose=5,
                          n_iter=5)
 clf.fit(X_train, y_train)
+clf.best_estimator_
+decision_pipeline
+params = {
+    'decision__criterion': ['gini', 'entropy'],
+    'normalize__with_mean': [True, False],
+    'decision__max_depth': [3, 7]
+}
+clf = GridSearchCV(decision_pipeline,
+                   params,
+                   cv=3,
+                   verbose=5)
+clf.fit(X_train, y_train)
