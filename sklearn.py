@@ -35,3 +35,24 @@ scaler2 = decision_pipeline.steps[0][1]
 clf2 = decision_pipeline.steps[1][1]
 clf2.predict(scaler2.transform(X_test))
 clf2.predict(X_test)
+from sklearn.model_selection import GridSearchCV, RandomizedSearchCV
+clf = DecisionTreeClassifier()
+clf
+param_range = {
+    'criterion': ['gini', 'entropy'],
+    'max_depth': [3, 5, 7, 9]
+}
+clf = GridSearchCV(DecisionTreeClassifier(),
+                   param_range,
+                   cv=3,
+                   verbose=5)
+clf.fit(X_train, y_train)
+clf.best_estimator_
+clf.predict(X_test)
+clf.score(X_test, y_test)
+clf = RandomizedSearchCV(DecisionTreeClassifier(),
+                         param_range,
+                         cv=3,
+                         verbose=5,
+                         n_iter=5)
+clf.fit(X_train, y_train)
