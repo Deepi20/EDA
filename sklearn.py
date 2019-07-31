@@ -21,3 +21,17 @@ X1 = scaler.transform(X_train)
 
 clf = DecisionTreeClassifier()
 clf.fit(X1, y_train)
+X2 = scaler.transform(X_test)
+clf.predict(X2)
+from sklearn.pipeline import Pipeline
+decision_pipeline = Pipeline([
+    ('normalize', StandardScaler()),
+    ('decision', DecisionTreeClassifier())
+])
+decision_pipeline.fit(X_train, y_train)
+decision_pipeline.predict(X_test)
+decision_pipeline.score(X_test, y_test)
+scaler2 = decision_pipeline.steps[0][1]
+clf2 = decision_pipeline.steps[1][1]
+clf2.predict(scaler2.transform(X_test))
+clf2.predict(X_test)
