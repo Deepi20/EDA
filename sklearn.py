@@ -63,3 +63,29 @@ params = {
     'normalize__with_mean': [True, False],
     'decision__max_depth': [3, 7]
 }
+clf = GridSearchCV(decision_pipeline,
+                   params,
+                   cv=3,
+                   verbose=5)
+clf.fit(X_train, y_train)
+clf.best_estimator_
+clf.predict(X_test)
+clf.score(X_test, y_test)
+from sklearn.metrics import recall_score
+def scorer(estimator, X, y):
+  pred = estimator.predict(X)
+  return(recall_score(y, pred, pos_label=2, average='micro'))
+clf = GridSearchCV(decision_pipeline,
+                   params,
+                   cv=3,
+                   verbose=5,
+                   scoring=scorer)
+clf.fit(X_train, y_train)
+clf.predict(X_test)
+clf.score(X_test, y_test)
+clf.best_estimator_
+from pickle import dump, load
+with open('classifier.pkl', 'wb') as f:
+  dump(clf, f)
+with open('classifier.pkl', 'rb') as f:
+  var2 = load(f)
