@@ -80,12 +80,3 @@ clf = GridSearchCV(decision_pipeline,
                    cv=3,
                    verbose=5,
                    scoring=scorer)
-clf.fit(X_train, y_train)
-clf.predict(X_test)
-clf.score(X_test, y_test)
-clf.best_estimator_
-from pickle import dump, load
-with open('classifier.pkl', 'wb') as f:
-  dump(clf, f)
-with open('classifier.pkl', 'rb') as f:
-  var2 = load(f)
