@@ -23,3 +23,9 @@ import matplotlib.pylab as plt
 import numpy as np
 df.replace("?",np.nan,inplace = True)
 df.head(5)
+missing_data = df.isnull()
+missing_data.head(5)
+for column in missing_data.columns.values.tolist():
+    print(column)
+    print(missing_data[column].value_counts())
+    print("")
