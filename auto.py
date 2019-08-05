@@ -8,3 +8,13 @@ headers = ["symboling","normalized-losses","make","fuel-type","aspiration", "num
          "num-of-cylinders", "engine-size","fuel-system","bore","stroke","compression-ratio","horsepower",
          "peak-rpm","city-mpg","highway-mpg","price"]
 print("headers\n",headers)
+df.columns = headers
+df.head(10)
+df.dropna(subset = ["price"],axis = 0)
+print(df.columns)
+df.to_csv("automobile.csv",index= False)
+df.dtypes
+print(df.dtypes)
+df.describe()
+df.describe(include = "all")
+df[['length','compression-ratio']].describe()
