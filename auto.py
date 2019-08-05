@@ -18,3 +18,8 @@ print(df.dtypes)
 df.describe()
 df.describe(include = "all")
 df[['length','compression-ratio']].describe()
+df.info
+import matplotlib.pylab as plt
+import numpy as np
+df.replace("?",np.nan,inplace = True)
+df.head(5)
