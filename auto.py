@@ -55,3 +55,6 @@ df.dtypes
 df[["bore","stroke"]]=df[["bore","stroke"]].astype("float")
 df[["normalized-losses"]] = df[["normalized-losses"]].astype("int")
 df[["price"]] = df[["price"]].astype("float")
+df[["peak-rpm"]] = df[["peak-rpm"]].astype("float")
+df.head(10)
+df["city-L/100km"] = 235/df["city-mpg"]
