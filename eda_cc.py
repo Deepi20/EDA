@@ -68,3 +68,16 @@ df["length"] = df["length"]/df["length"].max()
 df["width"] = df["width"]/df["width"].max()
 df["height"] = df["height"]/df["height"].max()
 df["horsepower"] = df["horsepower"].astype(int, copy = True)
+%matplotlib inline
+import matplotlib as plt
+from matplotlib import pyplot
+plt.pyplot.hist(df["horsepower"])
+plt.pyplot.xlabel("horsepower")
+plt.pyplot.ylabel("count")
+plt.pyplot.title("horsepower bins")
+bins = np.linspace(min(df["horsepower"]),max(df["horsepower"]),4)
+bins
+group_names = ["Low","Medium","High"]
+df["horsepower-binned"] = pd.cut(df["horsepower"],bins,labels = group_names,include_lowest = True)
+df[["horsepower","horsepower-binned"]].head(30)
+df["horsepower-binned"].value_counts()
