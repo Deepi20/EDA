@@ -58,3 +58,13 @@ df[["price"]] = df[["price"]].astype("float")
 df[["peak-rpm"]] = df[["peak-rpm"]].astype("float")
 df.head(10)
 df["city-L/100km"] = 235/df["city-mpg"]
+df.head(10)
+df["highway-L/100km"] = 235/df["highway-mpg"]
+df.head(5)
+df.shape
+df = df.drop(['city-mpg','highway-mpg'],axis=1)
+df.columns
+df["length"] = df["length"]/df["length"].max()
+df["width"] = df["width"]/df["width"].max()
+df["height"] = df["height"]/df["height"].max()
+df["horsepower"] = df["horsepower"].astype(int, copy = True)
