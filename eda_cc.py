@@ -102,3 +102,7 @@ dummy_variable_2 = pd.get_dummies(df["aspiration"])
 dummy_variable_2.head()
 dummy_variable_2.rename(columns = {'aspiration-std':'std','aspiration-turbo':'turbo'}, inplace = True )
 dummy_variable_2.head()
+df = pd.concat([df,dummy_variable_2],axis = 1)
+
+df.head(5)
+df.to_csv('clean_df.csv')
