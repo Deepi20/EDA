@@ -112,4 +112,6 @@ plt.ylim(0,)
 df[["engine-size", "price"]].corr()
 sns.regplot(x="highway-mpg", y="price", data=df)
 df[['highway-mpg', 'price']].corr()
+sns.regplot(x="peak-rpm", y="price", data=df)
+df[['peak-rpm','price']].corr()
 
