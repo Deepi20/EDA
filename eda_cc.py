@@ -114,4 +114,8 @@ sns.regplot(x="highway-mpg", y="price", data=df)
 df[['highway-mpg', 'price']].corr()
 sns.regplot(x="peak-rpm", y="price", data=df)
 df[['peak-rpm','price']].corr()
+sns.boxplot(x="body-style", y="price", data=df)
+sns.boxplot(x="engine-location", y="price", data=df)
+sns.boxplot(x="drive-wheels", y="price", data=df)
+df.describe()
 
