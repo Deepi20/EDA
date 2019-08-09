@@ -118,4 +118,15 @@ sns.boxplot(x="body-style", y="price", data=df)
 sns.boxplot(x="engine-location", y="price", data=df)
 sns.boxplot(x="drive-wheels", y="price", data=df)
 df.describe()
-
+df['drive-wheels'].value_counts()
+df['drive-wheels'].value_counts().to_frame()
+drive_wheels_counts = df['drive-wheels'].value_counts().to_frame()
+drive_wheels_counts.rename(columns={'drive-wheels': 'value_counts'}, inplace=True)
+drive_wheels_counts
+drive_wheels_counts.index.name = 'drive-wheels'
+drive_wheels_counts
+engine_loc_counts = df['engine-location'].value_counts().to_frame()
+engine_loc_counts.rename(columns={'engine-location': 'value_counts'}, inplace=True)
+engine_loc_counts.index.name = 'engine-location'
+engine_loc_counts.head(10)
+df['drive-wheels'].unique()
