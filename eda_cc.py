@@ -106,3 +106,10 @@ df = pd.concat([df,dummy_variable_2],axis = 1)
 
 df.head(5)
 df.to_csv('clean_df.csv')
+df.corr()
+sns.regplot(x="engine-size", y="price", data=df)
+plt.ylim(0,)
+df[["engine-size", "price"]].corr()
+sns.regplot(x="highway-mpg", y="price", data=df)
+df[['highway-mpg', 'price']].corr()
+
