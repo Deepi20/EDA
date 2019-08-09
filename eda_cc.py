@@ -130,3 +130,9 @@ engine_loc_counts.rename(columns={'engine-location': 'value_counts'}, inplace=Tr
 engine_loc_counts.index.name = 'engine-location'
 engine_loc_counts.head(10)
 df['drive-wheels'].unique()
+df_group_one = df[['drive-wheels','body-style','price']]
+df_group_one = df_group_one.groupby(['drive-wheels'],as_index=False).mean()
+df_group_one
+df_gptest = df[['drive-wheels','body-style','price']]
+grouped_test1 = df_gptest.groupby(['drive-wheels','body-style'],as_index=False).mean()
+grouped_test1
