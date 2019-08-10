@@ -185,3 +185,19 @@ pearson_coef, p_value = stats.pearsonr(df['city-mpg'], df['price'])
 print("The Pearson Correlation Coefficient is", pearson_coef, " with a P-value of P = ", p_value)
 pearson_coef, p_value = stats.pearsonr(df['highway-mpg'], df['price'])
 print( "The Pearson Correlation Coefficient is", pearson_coef, " with a P-value of P = ", p_value )
+grouped_test2=df_gptest[['drive-wheels', 'price']].groupby(['drive-wheels'])
+grouped_test2.head(2)
+df_gptest
+grouped_test2.get_group('4wd')['price']
+f_val, p_val = stats.f_oneway(grouped_test2.get_group('fwd')['price'], grouped_test2.get_group('rwd')['price'], grouped_test2.get_group('4wd')['price'])  
+ 
+print( "ANOVA results: F=", f_val, ", P =", p_val) 
+f_val, p_val = stats.f_oneway(grouped_test2.get_group('fwd')['price'], grouped_test2.get_group('rwd')['price'])  
+ 
+print( "ANOVA results: F=", f_val, ", P =", p_val )
+f_val, p_val = stats.f_oneway(grouped_test2.get_group('4wd')['price'], grouped_test2.get_group('rwd')['price'])  
+   
+print( "ANOVA results: F=", f_val, ", P =", p_val)   
+f_val, p_val = stats.f_oneway(grouped_test2.get_group('4wd')['price'], grouped_test2.get_group('fwd')['price'])  
+ 
+print("ANOVA results: F=", f_val, ", P =", p_val)  
