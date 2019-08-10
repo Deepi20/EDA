@@ -201,3 +201,13 @@ print( "ANOVA results: F=", f_val, ", P =", p_val)
 f_val, p_val = stats.f_oneway(grouped_test2.get_group('4wd')['price'], grouped_test2.get_group('fwd')['price'])  
  
 print("ANOVA results: F=", f_val, ", P =", p_val)  
+from sklearn.linear_model import LinearRegression
+lm = LinearRegression()
+lm
+X = df[['highway-mpg']]
+Y = df['price']
+lm.fit(X,Y)
+Yhat=lm.predict(X)
+Yhat[0:5]  
+lm.intercept_
+lm.coef_
