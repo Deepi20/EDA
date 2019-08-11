@@ -230,3 +230,8 @@ lm2.fit(df[['normalized-losses' , 'highway-mpg']],df['price'])
 lm2.coef_
 import seaborn as sns
 %matplotlib inline 
+width = 12
+height = 10
+plt.figure(figsize=(width, height))
+sns.regplot(x="highway-mpg", y="price", data=df)
+plt.ylim(0,)
