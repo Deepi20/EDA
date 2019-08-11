@@ -211,3 +211,7 @@ Yhat=lm.predict(X)
 Yhat[0:5]  
 lm.intercept_
 lm.coef_
+lm1 = LinearRegression()
+lm1 
+lm1.fit(df[['highway-mpg']], df[['price']])
+lm1
