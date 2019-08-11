@@ -223,3 +223,10 @@ Yhat=-7963.34 + 166.86*X
 Price=-7963.34 + 166.86*engine-size
 Z = df[['horsepower', 'curb-weight', 'engine-size', 'highway-mpg']]
 lm.fit(Z, df['price'])
+lm.intercept_
+lm.coef_
+lm2 = LinearRegression()
+lm2.fit(df[['normalized-losses' , 'highway-mpg']],df['price'])
+lm2.coef_
+import seaborn as sns
+%matplotlib inline 
