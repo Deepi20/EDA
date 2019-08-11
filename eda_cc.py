@@ -215,3 +215,11 @@ lm1 = LinearRegression()
 lm1 
 lm1.fit(df[['highway-mpg']], df[['price']])
 lm1
+lm1.coef_
+# Intercept
+lm1.intercept_
+Yhat=-7963.34 + 166.86*X
+
+Price=-7963.34 + 166.86*engine-size
+Z = df[['horsepower', 'curb-weight', 'engine-size', 'highway-mpg']]
+lm.fit(Z, df['price'])
