@@ -241,6 +241,3 @@ plt.ylim(0,)
 df[["peak-rpm","highway-mpg","price"]].corr()
 width = 12
 height = 10
-plt.figure(figsize=(width, height))
-sns.residplot(df['highway-mpg'], df['price'])
-plt.show()
