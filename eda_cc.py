@@ -244,3 +244,16 @@ height = 10
 plt.figure(figsize=(width, height))
 sns.residplot(df['highway-mpg'], df['price'])
 plt.show()
+plt.figure(figsize=(width, height))
+
+
+ax1 = sns.distplot(df['price'], hist=False, color="r", label="Actual Value")
+sns.distplot(Yhat, hist=False, color="b", label="Fitted Values" , ax=ax1)
+
+
+plt.title('Actual vs Fitted Values for Price')
+plt.xlabel('Price (in dollars)')
+plt.ylabel('Proportion of Cars')
+
+plt.show()
+plt.close()
