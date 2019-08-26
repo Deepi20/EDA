@@ -22,3 +22,16 @@ X, y = prep_data(df)
 
 # Plot our data by running our plot data function on X and y
 plot_data(X, y)
+from imblearn.over_sampling import SMOTE
+
+# Run the prep_data function
+X, y = prep_data(df)
+
+# Define the resampling method
+method = SMOTE(kind='regular')
+
+# Create the resampled feature set
+X_resampled, y_resampled = method.fit_sample(X, y)
+
+# Plot the resampled data
+plot_data(X_resampled,y_resampled)
