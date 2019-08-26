@@ -72,3 +72,24 @@ model = LogisticRegression()
 
 # Define the pipeline, tell it to combine SMOTE with the Logistic Regression model
 pipeline = Pipeline([('SMOTE', resampling), ('Logistic Regression', model)])
+X_train, X_test, y_train, y_test = train_test_split(X,y,test_size = 0.3, random_state = 0)
+
+# Fit your pipeline onto your training set and obtain predictions by fitting the model onto the test data 
+pipeline.fit(X_train, y_train) 
+predicted = pipeline.predict(X_test)
+
+# Obtain the results from the classification report and confusion matrix 
+print('Classifcation report:\n', classification_report(y_test, predicted))
+conf_mat = confusion_matrix(y_true=y_test, y_pred=predicted)
+print('Confusion matrix:\n', conf_mat)
+total_obs = ____
+
+# Count the total number of non-fraudulent observations 
+non_fraud = [i for ____ ____ ____ if i == 0]
+count_non_fraud = non_fraud.count(0)
+
+# Calculate the percentage of non fraud observations in the dataset
+percentage = (float(____)/float(____)) * 100
+
+# Print the percentage: this is our "natural accuracy" by doing nothing
+____(____)
