@@ -35,3 +35,32 @@ X_resampled, y_resampled = method.fit_sample(X, y)
 
 # Plot the resampled data
 plot_data(X_resampled,y_resampled)
+print(pd.value_counts(pd.Series(y)))
+
+# Print the value_counts
+print(pd.value_counts(pd.Series(y_resampled)))
+
+# Run compare_plot
+compare_plot(X,y,X_resampled, y_resampled, method='SMOTE')
+
+df.groupby('Class').mean()
+
+# Implement a rule for stating which cases are flagged as fraud
+df['flag_as_fraud'] = np.where(np.logical_and(df['V1']< -3,df['V3']< -5), 1, 0)
+
+# Create a crosstab of flagged fraud cases versus the actual fraud cases
+print(pd.crosstab(df.Class, df.flag_as_fraud, rownames=['Actual Fraud'], colnames=['Flagged Fraud']))
+# Create the training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=0)
+
+# Fit a logistic regression model to our data
+model = LogisticRegression()
+model.fit(X_train, y_train)
+
+# Obtain model predictions
+predicted = model.predict(X_test)
+
+# Print the classifcation report and confusion matrix
+print('Classification report:\n', classification_report(y_test, predicted))
+conf_mat = confusion_matrix(y_true=y_test, y_pred=predicted)
+print('Confusion matrix:\n', conf_mat)
