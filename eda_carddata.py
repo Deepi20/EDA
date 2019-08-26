@@ -64,3 +64,11 @@ predicted = model.predict(X_test)
 print('Classification report:\n', classification_report(y_test, predicted))
 conf_mat = confusion_matrix(y_true=y_test, y_pred=predicted)
 print('Confusion matrix:\n', conf_mat)
+from imblearn.pipeline import Pipeline 
+
+# Define which resampling method and which ML model to use in the pipeline
+resampling = SMOTE(kind = 'borderline2')
+model = LogisticRegression()
+
+# Define the pipeline, tell it to combine SMOTE with the Logistic Regression model
+pipeline = Pipeline([('SMOTE', resampling), ('Logistic Regression', model)])
