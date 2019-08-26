@@ -84,12 +84,3 @@ conf_mat = confusion_matrix(y_true=y_test, y_pred=predicted)
 print('Confusion matrix:\n', conf_mat)
 total_obs = ____
 
-# Count the total number of non-fraudulent observations 
-non_fraud = [i for ____ ____ ____ if i == 0]
-count_non_fraud = non_fraud.count(0)
-
-# Calculate the percentage of non fraud observations in the dataset
-percentage = (float(____)/float(____)) * 100
-
-# Print the percentage: this is our "natural accuracy" by doing nothing
-____(____)
