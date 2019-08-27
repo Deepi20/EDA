@@ -82,5 +82,39 @@ predicted = pipeline.predict(X_test)
 print('Classifcation report:\n', classification_report(y_test, predicted))
 conf_mat = confusion_matrix(y_true=y_test, y_pred=predicted)
 print('Confusion matrix:\n', conf_mat)
-total_obs = ____
+total_obs = len(y)
+
+# Count the total number of non-fraudulent observations 
+non_fraud = [i for i in y if i == 0]
+count_non_fraud = non_fraud.count(0)
+
+# Calculate the percentage of non fraud observations in the dataset
+percentage = (float(count_non_fraud)/float(total_obs)) * 100
+
+# Print the percentage: this is our "natural accuracy" by doing nothing
+print(percentage)
+# Import the random forest model from sklearn
+from sklearn.ensemble import RandomForestClassifier
+
+# Split your data into training and test set
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=0)
+
+# Define the model as the random forest
+model = RandomForestClassifier(random_state=5)
+model.fit(X_train, y_train)
+
+# Obtain predictions from the test data 
+predicted = model.predict(X_test)
+from sklearn.metrics import classification_report, roc_auc_score, confusion_matrix
+
+# Obtain the predictions from our random forest model 
+predicted = model.predict(X_test)
+
+# Predict probabilities
+probs = model.predict_proba(X_test)
+
+# Print the ROC curve, classification report and confusion matrix
+print(roc_auc_score(y_test, probs[:,1]))
+print(classification_report(y_test, predicted))
+print(confusion_matrix(y_test, predicted))
 
