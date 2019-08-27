@@ -142,3 +142,4 @@ model = RandomForestClassifier(bootstrap=True, class_weight={0:1, 1:12}, criteri
 
 			# Change the number of trees to use
             n_estimators=20, n_jobs=-1, random_state=5)
+get_model_results(X_train, y_train, X_test, y_test, model)
