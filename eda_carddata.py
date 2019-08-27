@@ -117,4 +117,17 @@ probs = model.predict_proba(X_test)
 print(roc_auc_score(y_test, probs[:,1]))
 print(classification_report(y_test, predicted))
 print(confusion_matrix(y_test, predicted))
+average_precision = average_precision_score(y_test, predicted)
+model = RandomForestClassifier(class_weight='balanced_subsample', random_state=5)
 
+# Fit your training model to your training set
+model.fit(X_train,y_train )
+
+# Obtain the predicted values and probabilities from the model 
+predicted = model.predict(X_test)
+probs = model.predict_proba(X_test)
+
+# Print the roc_auc_score, the classification report and confusion matrix
+print(roc_auc_score(y_test, probs[:,1]))
+print(classification_report(y_test, predicted))
+print(confusion_matrix(y_test, predicted))
