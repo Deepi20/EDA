@@ -128,4 +128,8 @@ predicted = model.predict(X_test)
 probs = model.predict_proba(X_test)
 
 # Print the roc_auc_score, the classification report and confusion matrix
+print(roc_auc_score(y_test, probs[:,1]))
+print(classification_report(y_test, predicted))
+print(confusion_matrix(y_test, predicted))
+
 
