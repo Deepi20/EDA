@@ -151,4 +151,13 @@ param_grid = {'n_estimators': [1, 30], 'max_features': ['auto', 'log2'],  'max_d
 model = RandomForestClassifier(random_state=5)
 
 # Combine the parameter sets with the defined model
+CV_model = GridSearchCV(estimator=model, param_grid=param_grid, cv=5, scoring='recall', n_jobs=-1)
 
+# Fit the model to our training data and obtain best parameters
+CV_model.fit(X_train, y_train)
+CV_model.best_params_
+model = RandomForestClassifier(class_weight={0:1,1:12}, criterion='gini',
+            max_depth=8, max_features='log2', min_samples_leaf=10, n_estimators=30, n_jobs=-1, random_state=5)
+
+# Get results from your model
+get_model_results(X_train, y_train, X_test, y_test, model)
