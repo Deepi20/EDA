@@ -128,35 +128,4 @@ predicted = model.predict(X_test)
 probs = model.predict_proba(X_test)
 
 # Print the roc_auc_score, the classification report and confusion matrix
-print(roc_auc_score(y_test, probs[:,1]))
-print(classification_report(y_test, predicted))
-print(confusion_matrix(y_test, predicted))
 
-model = RandomForestClassifier(bootstrap=True, class_weight={0:1, 1:12}, criterion='entropy',
-			
-			# Change depth of model
-            max_depth=10,
-		
-			# Change the number of samples in leaf nodes
-            min_samples_leaf=10, 
-
-			# Change the number of trees to use
-            n_estimators=20, n_jobs=-1, random_state=5)
-get_model_results(X_train, y_train, X_test, y_test, model)
-param_grid = {'n_estimators': [1, 30], 'max_features': ['auto', 'log2'],  'max_depth': [4, 8], 'criterion': ['gini', 'entropy']
-}
-
-# Define the model to use
-model = RandomForestClassifier(random_state=5)
-
-# Combine the parameter sets with the defined model
-CV_model = GridSearchCV(estimator=model, param_grid=param_grid, cv=5, scoring='recall', n_jobs=-1)
-
-# Fit the model to our training data and obtain best parameters
-CV_model.fit(X_train, y_train)
-CV_model.best_params_
-model = RandomForestClassifier(class_weight={0:1,1:12}, criterion='gini',
-            max_depth=8, max_features='log2', min_samples_leaf=10, n_estimators=30, n_jobs=-1, random_state=5)
-
-# Get results from your model
-get_model_results(X_train, y_train, X_test, y_test, model)
