@@ -171,3 +171,5 @@ ensemble_model = VotingClassifier(estimators=[('lr', clf1), ('rf', clf2), ('dt',
 get_model_results(X_train, y_train, X_test, y_test, ensemble_model)
 ensemble_model = VotingClassifier(estimators=[('lr', clf1), ('rf', clf2), ('gnb', clf3)], voting='soft', weights=[1, 4, 1], flatten_transform=True)
 get_model_results(X_train, y_train, X_test, y_test, ensemble_model)
+df.shape
+df.head()
