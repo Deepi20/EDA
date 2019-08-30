@@ -174,3 +174,5 @@ get_model_results(X_train, y_train, X_test, y_test, ensemble_model)
 df.shape
 df.head()
 print(df.groupby('age').mean())
+df_fraud = df.loc[df.fraud == 1] 
+df_non_fraud = df.loc[df.fraud == 0]
