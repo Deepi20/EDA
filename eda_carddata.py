@@ -169,3 +169,4 @@ clf2 = RandomForestClassifier(class_weight={0:1, 1:12}, criterion='gini', max_de
 clf3 = DecisionTreeClassifier(random_state=5, class_weight="balanced")
 ensemble_model = VotingClassifier(estimators=[('lr', clf1), ('rf', clf2), ('dt', clf3)], voting='hard')
 get_model_results(X_train, y_train, X_test, y_test, ensemble_model)
+ensemble_model = VotingClassifier(estimators=[('lr', clf1), ('rf', clf2), ('gnb', clf3)], voting='soft', weights=[1, 4, 1], flatten_transform=True)
