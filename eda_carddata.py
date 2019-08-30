@@ -173,3 +173,4 @@ ensemble_model = VotingClassifier(estimators=[('lr', clf1), ('rf', clf2), ('gnb'
 get_model_results(X_train, y_train, X_test, y_test, ensemble_model)
 df.shape
 df.head()
+print(df.groupby('age').mean())
