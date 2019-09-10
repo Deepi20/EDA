@@ -1,4 +1,4 @@
-def Snippet_104():
+def replace():
     print()
     print(format('How to replace multiple values in a Pandas DataFrame','*^82'))
     import warnings
@@ -15,3 +15,4 @@ def Snippet_104():
     print(); print(df.replace(-999, np.nan))
     print(); print(df.replace(-999, 0))
     
+    replace()
