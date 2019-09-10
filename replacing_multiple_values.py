@@ -10,3 +10,6 @@ def Snippet_104():
                 'age': [42, 52, 36, 24, 73],
                 'preTestScore': [-999, -999, -999, 2, 1],
                 'postTestScore': [2, 2, -999, 2, -999]}
+    df = pd.DataFrame(raw_data, columns = ['first_name', 'last_name', 'age', 'preTestScore', 'postTestScore'])
+    print(); print(df)
+    
