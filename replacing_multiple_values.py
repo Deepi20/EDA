@@ -12,4 +12,6 @@ def Snippet_104():
                 'postTestScore': [2, 2, -999, 2, -999]}
     df = pd.DataFrame(raw_data, columns = ['first_name', 'last_name', 'age', 'preTestScore', 'postTestScore'])
     print(); print(df)
+    print(); print(df.replace(-999, np.nan))
+    print(); print(df.replace(-999, 0))
     
