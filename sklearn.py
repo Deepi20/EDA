@@ -29,3 +29,4 @@ decision_pipeline = Pipeline([
     ('decision', DecisionTreeClassifier())
 ])
 decision_pipeline.fit(X_train, y_train)
+decision_pipeline.predict(X_test)
