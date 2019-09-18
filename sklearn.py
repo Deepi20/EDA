@@ -55,3 +55,28 @@ clf = RandomizedSearchCV(DecisionTreeClassifier(),
                          cv=3,
                          verbose=5,
                          n_iter=5)
+clf.fit(X_train, y_train)
+clf.best_estimator_
+decision_pipeline
+params = {
+    'decision__criterion': ['gini', 'entropy'],
+    'normalize__with_mean': [True, False],
+    'decision__max_depth': [3, 7]
+}
+clf = GridSearchCV(decision_pipeline,
+                   params,
+                   cv=3,
+                   verbose=5)
+clf.fit(X_train, y_train)
+clf.best_estimator_
+clf.predict(X_test)
+clf.score(X_test, y_test)
+from sklearn.metrics import recall_score
+def scorer(estimator, X, y):
+  pred = estimator.predict(X)
+  return(recall_score(y, pred, pos_label=2, average='micro'))
+clf = GridSearchCV(decision_pipeline,
+                   params,
+                   cv=3,
+                   verbose=5,
+                   scoring=scorer)
