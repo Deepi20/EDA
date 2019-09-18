@@ -50,3 +50,8 @@ clf.fit(X_train, y_train)
 clf.best_estimator_
 clf.predict(X_test)
 clf.score(X_test, y_test)
+clf = RandomizedSearchCV(DecisionTreeClassifier(),
+                         param_range,
+                         cv=3,
+                         verbose=5,
+                         n_iter=5)
