@@ -28,3 +28,4 @@ decision_pipeline = Pipeline([
     ('normalize', StandardScaler()),
     ('decision', DecisionTreeClassifier())
 ])
+decision_pipeline.fit(X_train, y_train)
